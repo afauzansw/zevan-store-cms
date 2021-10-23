@@ -83,7 +83,9 @@
     <div class="flex flex-col flex-1 w-full">
         <x-header/>
         <main class="h-full overflow-y-auto">
-            {{ $slot }}
+            <div class="container px-6 mx-auto grid">
+                {{ $slot }}
+            </div>
         </main>
     </div>
 </div>

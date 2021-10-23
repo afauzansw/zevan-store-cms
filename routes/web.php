@@ -17,6 +17,18 @@ use Illuminate\Support\Facades\Route;
 //    return view('layouts.app');
 //});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('pages.dashboard');
-})->name('dashboard');
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('pages.dashboard');
+//})->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('dashboard', function () {
+        return view('pages.dashboard');
+    })->name('dashboard');
+    Route::get('products', function () {
+        return view('pages.products');
+    })->name('products');
+    Route::get('transactions', function () {
+        return view('pages.products');
+    })->name('transactions');
+});
