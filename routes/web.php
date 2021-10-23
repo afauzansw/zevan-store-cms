@@ -17,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 //    return view('layouts.app');
 //});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    return view('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('pages.dashboard');
 })->name('dashboard');
