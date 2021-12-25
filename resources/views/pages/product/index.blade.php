@@ -1,6 +1,6 @@
-<x-app-layout title="products">
+<x-app-layout title="Products">
     <!-- Page Title -->
-    <x-page-title title="products"/>
+    <x-page-title title="Products"/>
     <!-- New Table -->
     <x-table.table :headers="['Name', 'Type', 'Price', 'Quantity', 'Action']">
         @forelse($products as $product)
