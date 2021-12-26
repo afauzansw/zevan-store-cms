@@ -19,10 +19,15 @@ class ProductFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'type' => $this->faker->creditCardNumber,
+            'slug' => $this->faker->slug,
+            'description' => $this->faker->realText,
+            'price' => $this->faker->randomNumber(5),
+            'quantity' => $this->faker->randomNumber(3),
         ];
     }
 }

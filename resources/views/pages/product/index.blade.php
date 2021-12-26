@@ -10,11 +10,16 @@
                 <x-table.td> {{ $product->price }} </x-table.td>
                 <x-table.td> {{ $product->quantity }} </x-table.td>
                 <x-table.td>
-
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button><ion-icon name="trash-outline"></ion-icon></button>
+                    </form>
                 </x-table.td>
             </tr>
         @empty
-            <p>No data to show.</p>
+            <td colspan="5" class="px-4 py-3 text-gray-700 dark:text-gray-400">No data to show.</td>
         @endforelse
     </x-table.table>
+    {{ $products->links() }}
 </x-app-layout>
