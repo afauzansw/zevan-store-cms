@@ -5,7 +5,7 @@
 
     <!-- Form Card -->
     <div class="px-6 py-5 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <form action="{{ route('products.store') }}" method="POST">
+        <form action="{{ route('products.update', $product->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -15,7 +15,7 @@
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     type="text"
                     name="name"
-                    value="{{ old('name') }}"
+                    value="{{ old('name') ? old('name') : $product->name }}"
                 />
             </label>
 
@@ -25,7 +25,7 @@
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     type="text"
                     name="type"
-                    value="{{ old('type') }}"
+                    value="{{ old('type') ? old('type') : $product->type }}"
                 />
             </label>
 
@@ -36,7 +36,7 @@
                     rows="10"
                     id="description"
                     name="description"
-                >{{ old('description') }}</textarea>
+                >{{ old('description') ? old('description') : $product->description}}</textarea>
             </label>
 
             <label class="block mt-4 text-sm">
@@ -45,7 +45,7 @@
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     type="number"
                     name="price"
-                    value="{{ old('price') }}"
+                    value="{{ old('price') ?  old('price') : $product->price}}"
                 />
             </label>
 
@@ -55,7 +55,7 @@
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     type="number"
                     name="quantity"
-                    value="{{ old('quantity') }}"
+                    value="{{ old('quantity') ? old('quantity') :  $product->quantity}}"
                 />
             </label>
 
@@ -63,7 +63,8 @@
                 <button
                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                     type="submit"
-                >Edit Product</button>
+                >Edit Product
+                </button>
             </label>
         </form>
     </div>

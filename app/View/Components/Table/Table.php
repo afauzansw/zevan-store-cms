@@ -7,20 +7,28 @@ use Illuminate\View\Component;
 class Table extends Component
 {
     /**
-     * Headers of table
+     * Headers of table.
      *
      * @var
      */
     public $headers;
 
     /**
+     * Pagination of data.
+     *
+     * @var
+     */
+    public $pagination;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(array $headers)
+    public function __construct(array $headers, $pagination)
     {
         $this->headers = $headers;
+        $this->pagination = $pagination;
     }
 
     /**

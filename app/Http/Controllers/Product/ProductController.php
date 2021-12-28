@@ -19,7 +19,6 @@ class ProductController extends Controller
     {
         $products = Product::query()->paginate(15);
         return view('pages.product.index', ['products' => $products]);
-//        return  $products;
     }
 
     /**
@@ -49,7 +48,7 @@ class ProductController extends Controller
     /**
      * Display the specified product.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,8 +64,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::query()->findOrFail($id)->get();
-        return view('pages.product.edit', $product);
+        $product = Product::query()->findOrFail($id);
+        return view('pages.product.edit', ['product' => $product]);
     }
 
     /**
