@@ -8,8 +8,8 @@
             <tr class="text-gray-700 dark:text-gray-400">
                 <x-table.td> {{ $product->name }} </x-table.td>
                 <x-table.td> {{ $product->type }} </x-table.td>
-                <x-table.td> {{ $product->price }} </x-table.td>
-                <x-table.td> {{ $product->quantity }} </x-table.td>
+                <x-table.td> Rp {{ number_format($product->price, 0, ',', '.') }} </x-table.td>
+                <x-table.td> {{ number_format($product->quantity, 0, ',', '.') }} </x-table.td>
                 <x-table.td>
                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                         @csrf

@@ -3,6 +3,9 @@
 </a>
 <ul class="mt-6">
     <x-sidebar-item pageTitle="dashboard" icon="home"/>
-    <x-sidebar-item pageTitle="products" icon="box"/>
-{{--    <x-sidebar-item pageTitle="transactions" icon="shopping-bag"/>--}}
+    <x-sidebar.dropdown-list name="Product" icon="box">
+        <x-sidebar.dropdown-item name="Create Product" link="{{ route('products.create') }}"/>
+        <x-sidebar.dropdown-item name="Product List" link="{{ route('products.index') }}"/>
+    </x-sidebar.dropdown-list>
+    {{--    <x-sidebar-item pageTitle="transactions" icon="shopping-bag"/>--}}
 </ul>

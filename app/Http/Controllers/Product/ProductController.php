@@ -94,4 +94,6 @@ class ProductController extends Controller
         Product::query()->findOrFail($id)->delete();
         return redirect()->route('products.index');
     }
+
+//    public function
 }
