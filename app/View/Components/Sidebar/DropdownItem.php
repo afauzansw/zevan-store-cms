@@ -11,7 +11,7 @@ class DropdownItem extends Component
      *
      * @var
      */
-    public $link;
+    public $route;
 
     /**
      * Page name of item.
@@ -24,9 +24,9 @@ class DropdownItem extends Component
      *
      * @return void
      */
-    public function __construct($link, $name)
+    public function __construct($route, $name)
     {
-        $this->link = $link;
+        $this->route = $route;
         $this->name = $name;
     }
 
