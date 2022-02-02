@@ -4,15 +4,14 @@ namespace App\View\Components\Sidebar;
 
 use Illuminate\View\Component;
 
-class list extends Component
+class ItemList extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public
-    function __construct()
+    public function __construct()
     {
         //
     }
@@ -22,9 +21,8 @@ class list extends Component
      *
      * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public
-    function render()
+    public function render()
     {
-        return view('components.sidebar.list');
+        return view('components.sidebar.item-list');
     }
 }

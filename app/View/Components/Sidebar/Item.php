@@ -7,13 +7,28 @@ use Illuminate\View\Component;
 class Item extends Component
 {
     /**
+     * Page title and route
+     *
+     * @var
+     */
+    public $pageTitle;
+
+    /**
+     * Icon sidebar list
+     *
+     * @var
+     */
+    public $icon;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($pageTitle, $icon)
     {
-        //
+        $this->pageTitle = $pageTitle;
+        $this->icon = $icon;
     }
 
     /**
