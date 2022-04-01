@@ -56,7 +56,7 @@ class ProductController extends Controller
     {
         $product = Product::query()->findOrFail($id);
 
-        return view('pages.product.show', $product);
+        return view('pages.product.show', ['product' => $product]);
     }
 
     /**

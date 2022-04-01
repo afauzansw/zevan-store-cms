@@ -1,4 +1,4 @@
-<x-app-layout title="Products">
+<x-app-layout title="Create Product">
 
     <!-- Page Title -->
     <x-page-title title="Create Product"/>

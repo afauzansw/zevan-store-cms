@@ -1,7 +1,7 @@
-<x-app-layout title="Products">
+<x-app-layout title="Products List">
 
     <!-- Page Title -->
-    <x-page-title title="Products"/>
+    <x-page-title title="Products List"/>
 
     <!-- New Table -->
     <x-table.table :headers="['Name', 'Type', 'Price', 'Quantity', 'Action']"

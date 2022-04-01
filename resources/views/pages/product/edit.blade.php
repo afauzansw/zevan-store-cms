@@ -1,4 +1,4 @@
-<x-app-layout title="Products">
+<x-app-layout title="Edit Product">
 
     <!-- Page Title -->
     <x-page-title title="Edit Product"/>
@@ -49,7 +49,9 @@
                     rows="10"
                     id="description"
                     name="description"
-                >{{ old('description') ? old('description') : $product->description}}</textarea>
+                >
+                    {{ old('description') ? old('description') : $product->description}}
+                </textarea>
             </label>
 
             <label class="block mt-4 text-sm">
@@ -62,7 +64,7 @@
                         class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
                         type="number"
                         name="price"
-                        value="{{ old('price') }}"
+                        value="{{ old('price') ? old('price') : $product->price}}"
                     />
                     <div
                         class="absolute inset-y-0 flex items-center ml-3 pointer-events-none"
@@ -86,7 +88,8 @@
                 <button
                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                     type="submit"
-                >Edit Product
+                >
+                    Edit Product
                 </button>
             </label>
         </form>
