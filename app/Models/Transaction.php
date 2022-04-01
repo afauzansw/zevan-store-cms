@@ -15,7 +15,7 @@ class Transaction extends Model
      * @var string[]
      */
     protected $fillable = [
-        'uuid', 'name', 'email', 'phone_number', 'address', 'city', 'province', 'zip_code', 'transaction_total', 'transaction_status'
+        'number', 'name', 'email', 'phone_number', 'address', 'city', 'province', 'zip_code', 'pay_amount', 'status'
     ];
 
     /**
@@ -23,10 +23,17 @@ class Transaction extends Model
      */
     protected $hidden = [];
 
+    const status = [
+        'pending' => 'PENDING',
+        'approve' => 'APPROVE',
+        'sending' => 'SENDING',
+        'success' => 'SUCCESS',
+        'failed' => 'FAILED',
+
+    ];
+
     /**
      * Transaction has many transaction details.
-     *
-     * @return HasMany
      */
     public function transactionDetails(): HasMany
     {

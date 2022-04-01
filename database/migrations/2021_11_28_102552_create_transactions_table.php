@@ -15,7 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->string('number');
             $table->string('name');
             $table->string('email');
             $table->string('phone_number');
@@ -23,8 +23,8 @@ class CreateTransactionsTable extends Migration
             $table->string('city');
             $table->string('province');
             $table->integer('zip_code');
-            $table->integer('transaction_total');
-            $table->string('transaction_status');
+            $table->integer('pay_amount');
+            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
         });

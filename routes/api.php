@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Transaction\TransactionController;
+use App\Http\Controllers\Api\Product\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::prefix('transactions')->group(function () {
+    Route::post('checkout', [TransactionController::class, 'checkout']);
+    Route::get('track/{number}', [TransactionController::class, 'track']);
 });
+
+Route::get('products', [ProductController::class, 'get']);

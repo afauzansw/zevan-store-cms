@@ -1,6 +1,8 @@
 <x-app-layout title="Products">
+
     <!-- Page Title -->
     <x-page-title title="Products"/>
+
     <!-- New Table -->
     <x-table.table :headers="['Name', 'Type', 'Price', 'Quantity', 'Action']"
                    :pagination="$products">
@@ -30,4 +32,5 @@
             <td colspan="5" class="px-4 py-3 text-gray-700 dark:text-gray-400">No data to show.</td>
         @endforelse
     </x-table.table>
+
 </x-app-layout>

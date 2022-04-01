@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Product;
+namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the products.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -23,8 +23,6 @@ class ProductController extends Controller
 
     /**
      * Show the form for creating a new product.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -33,34 +31,36 @@ class ProductController extends Controller
 
     /**
      * Store a newly created product in storage.
-     *
-     * @param ProductRequest $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ProductRequest $request)
     {
         $slug = ['slug' => Str::slug($request->name)];
-        Product::query()->create(array_merge($request->all(), $slug));
+        $product = Product::query()->create(array_merge($request->all(), $slug));
 
+        foreach ($request->file('image') as $key => $value) {
+            $imageRequest = [
+                'product_id' => $product->id,
+                'image' => Storage::putFile('assets/img/products', $request->file('image'))
+            ];
+            ProductImage::query()->create($imageRequest);
+        }
+
+//        var_dump($imageRequest['image']);
         return redirect()->route('products.index');
     }
 
     /**
      * Display the specified product.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $product = Product::query()->findOrFail($id);
+
+        return view('pages.product.show', $product);
     }
 
     /**
      * Show the form for editing the specified product.
-     *
-     * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -70,10 +70,6 @@ class ProductController extends Controller
 
     /**
      * Update the specified product in storage.
-     *
-     * @param ProductRequest $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProductRequest $request, $id)
     {
@@ -85,15 +81,11 @@ class ProductController extends Controller
 
     /**
      * Remove the specified product from storage.
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         Product::query()->findOrFail($id)->delete();
-        return redirect()->route('products.index');
+        return redirect()->back();
     }
 
-//    public function
 }

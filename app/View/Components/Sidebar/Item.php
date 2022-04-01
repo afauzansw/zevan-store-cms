@@ -6,18 +6,7 @@ use Illuminate\View\Component;
 
 class Item extends Component
 {
-    /**
-     * Page title and route
-     *
-     * @var
-     */
     public $pageTitle;
-
-    /**
-     * Icon sidebar list
-     *
-     * @var
-     */
     public $icon;
 
     /**

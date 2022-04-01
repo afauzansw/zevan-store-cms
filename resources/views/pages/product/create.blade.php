@@ -5,9 +5,23 @@
 
     <!-- Form Card -->
     <div class="px-6 py-5 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <form action="{{ route('products.store') }}" method="POST">
+        <form action="{{ route('products.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
-            <label class="block text-sm">
+
+            <span class="text-gray-700 dark:text-gray-400">Product Image</span>
+
+            <label class="block text-sm grid grid-cols-4 gap-4">
+                @for($i = 4; $i > 0; $i--)
+                    <input
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        type="file"
+                        name="image"
+                        value="{{ old('image') }}"
+                    />
+                @endfor
+            </label>
+
+            <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Product Name</span>
                 <input
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -39,12 +53,22 @@
 
             <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Product Price</span>
-                <input
-                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    type="number"
-                    name="price"
-                    value="{{ old('price') }}"
-                />
+                <!-- focus-within sets the color for the icon when input is focused -->
+                <div
+                    class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400"
+                >
+                    <input
+                        class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+                        type="number"
+                        name="price"
+                        value="{{ old('price') }}"
+                    />
+                    <div
+                        class="absolute inset-y-0 flex items-center ml-3 pointer-events-none"
+                    >
+                        Rp
+                    </div>
+                </div>
             </label>
 
             <label class="block mt-4 text-sm">
