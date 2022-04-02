@@ -6,18 +6,29 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Repositories\Products\Admin\AdminProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    protected $repository;
+
+    /**
+     * Product Controller constructor.
+     */
+    public function __construct(AdminProductRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the products.
      */
     public function index()
     {
-        $products = Product::query()->paginate(15);
+        $products = $this->repository->all([], true);
         return view('pages.product.index', ['products' => $products]);
     }
 
@@ -34,18 +45,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $slug = ['slug' => Str::slug($request->name)];
-        $product = Product::query()->create(array_merge($request->all(), $slug));
-
-        foreach ($request->file('image') as $key => $value) {
-            $imageRequest = [
-                'product_id' => $product->id,
-                'image' => Storage::putFile('assets/img/products', $request->file('image'))
-            ];
-            ProductImage::query()->create($imageRequest);
-        }
-
-//        var_dump($imageRequest['image']);
+        $this->repository->store($request->all());
         return redirect()->route('products.index');
     }
 
@@ -54,8 +54,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::query()->findOrFail($id);
-
+        $product = $this->repository->show($id);
         return view('pages.product.show', ['product' => $product]);
     }
 
@@ -64,7 +63,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::query()->findOrFail($id);
+        $product = $this->repository->show($id);
         return view('pages.product.edit', ['product' => $product]);
     }
 
@@ -73,9 +72,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $slug = ['slug' => Str::slug($request->name)];
-        Product::query()->findOrFail($id)->update(array_merge($request->all(), $slug));
-
+        $this->repository->update($id, $request->all());
         return redirect()->route('products.index');
     }
 
@@ -84,7 +81,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Product::query()->findOrFail($id)->delete();
+        $this->repository->destroy($id);
         return redirect()->back();
     }
 

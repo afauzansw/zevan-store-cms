@@ -3,22 +3,28 @@
 namespace App\Http\Controllers\Admin\Transaction;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CheckoutRequest;
-use App\Http\Response\ApiResponse;
 use App\Models\Transaction;
-use Exception;
-use http\Env\Request;
-use Illuminate\Http\JsonResponse;
+use App\Repositories\Transactions\Admin\AdminTransactionRepository;
+use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    protected $repository;
+
+    /**
+     * Transaction Controller constructor.
+     */
+    public function __construct(AdminTransactionRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the transactions.
      */
     public function index()
     {
-        $transaction = Transaction::query()->get();
-
+        $transaction = $this->repository->all([], true);
         return view('pages.transaction.index', $transaction);
     }
 
@@ -27,8 +33,7 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $transaction = Transaction::query()->findOrFail($id);
-
+        $transaction = $this->repository->show($id);
         return view('pages.transaction.show', $transaction);
     }
 
@@ -37,16 +42,16 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        Transaction::query()->findOrFail($id)->delete();
+        $this->repository->destroy($id);
         return redirect()->back();
     }
 
     /**
      * Change status of transaction.
      */
-    public function changeStatus(Request $request)
+    public function changeStatus(int $id, Request $request)
     {
-        Transaction::query()->update($request->status);
+        $this->repository->changeStatus($id, $request->status);
         return redirect()->back();
     }
 }

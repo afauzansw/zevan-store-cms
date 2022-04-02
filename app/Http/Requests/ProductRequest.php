@@ -3,13 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -18,8 +17,6 @@ class ProductRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {
@@ -32,5 +29,12 @@ class ProductRequest extends FormRequest
 //            'image'       => 'required|image',
 //            'image.*'     => 'image'
         ];
+    }
+
+    public function passedValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->name)
+        ]);
     }
 }
