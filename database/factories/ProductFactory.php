@@ -23,7 +23,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'type' => $this->faker->creditCardNumber,
+            'type' => 'Pakaian',
             'slug' => $this->faker->slug,
             'description' => $this->faker->realText,
             'price' => $this->faker->randomNumber(5),

@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('province');
-            $table->integer('zip_code');
+            $table->string('zip_code');
             $table->integer('pay_amount');
             $table->string('status');
             $table->softDeletes();

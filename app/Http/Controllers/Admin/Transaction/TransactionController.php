@@ -24,8 +24,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = $this->repository->all([], true);
-        return view('pages.transaction.index', $transaction);
+        $transactions = $this->repository->all([], true);
+        return view('pages.transaction.index', ['transactions' => $transactions]);
     }
 
     /**
@@ -34,7 +34,7 @@ class TransactionController extends Controller
     public function show($id)
     {
         $transaction = $this->repository->show($id);
-        return view('pages.transaction.show', $transaction);
+        return view('pages.transaction.show', ['transaction' => $transaction]);
     }
 
     /**

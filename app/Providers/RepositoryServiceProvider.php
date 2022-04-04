@@ -8,6 +8,8 @@ use App\Repositories\Products\Admin\AdminProductRepository;
 use App\Repositories\Products\Admin\AdminProductRepositoryImpl;
 use App\Repositories\Products\Api\ApiProductRepository;
 use App\Repositories\Products\Api\ApiProductRepositoryImpl;
+use App\Repositories\Statistics\StatisticRepository;
+use App\Repositories\Statistics\StatisticRepositoryImpl;
 use App\Repositories\Transactions\Admin\AdminTransactionRepository;
 use App\Repositories\Transactions\Admin\AdminTransactionRepositoryImpl;
 use App\Repositories\Transactions\Api\ApiTransactionRepository;
@@ -26,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ApiProductRepository::class, ApiProductRepositoryImpl::class);
         $this->app->bind(AdminTransactionRepository::class, AdminTransactionRepositoryImpl::class);
         $this->app->bind(ApiTransactionRepository::class, ApiTransactionRepositoryImpl::class);
+        $this->app->bind(StatisticRepository::class, StatisticRepositoryImpl::class);
     }
 
     /**

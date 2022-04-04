@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class Item extends Component
 {
     public $pageTitle;
+    public $route;
     public $icon;
 
     /**
@@ -14,9 +15,10 @@ class Item extends Component
      *
      * @return void
      */
-    public function __construct($pageTitle, $icon)
+    public function __construct($pageTitle, $route, $icon)
     {
         $this->pageTitle = $pageTitle;
+        $this->route = $route;
         $this->icon = $icon;
     }
 
@@ -27,6 +29,6 @@ class Item extends Component
      */
     public function render()
     {
-        return view('components.sidebar.item');
+        return view('components.sidebar\item');
     }
 }
