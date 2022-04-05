@@ -45,7 +45,7 @@
 {{--    </body>--}}
 {{--</html>--}}
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -61,20 +61,6 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
     />
-    <script
-        src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
-        defer
-    ></script>
-    <script src="{{ asset('assets/js/init-alpine.js') }}"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-        defer
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js"></script>
-    <script src="{{ asset('assets/js/charts-lines.js') }}" defer></script>
-    <script src="{{ asset('assets/js/charts-pie.js') }}" defer></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 <div
@@ -91,6 +77,22 @@
         </main>
     </div>
 </div>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+    defer
+></script>
+<script src="{{ asset('assets/js/init-alpine.js') }}"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+    defer
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+<script src="{{ asset('assets/js/charts-lines.js') }}" defer></script>
+<script src="{{ asset('assets/js/charts-pie.js') }}" defer></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 @livewireScripts
 <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
 <script>

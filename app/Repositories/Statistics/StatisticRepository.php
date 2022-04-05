@@ -10,6 +10,11 @@ interface StatisticRepository
     public function allStatistic();
 
     /**
+     * Pie chart for transaction status report.
+     */
+    public function pieStatusReport();
+
+    /**
      * Report total transaction.
      */
     public function totalTransaction();
@@ -33,4 +38,9 @@ interface StatisticRepository
      * Report recent transaction history.
      */
     public function transactionHistory(int $take = 7);
+
+    /**
+     * Data for transaction status report.
+     */
+    public function statusReport();
 }

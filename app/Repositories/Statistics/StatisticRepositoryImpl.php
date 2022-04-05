@@ -15,11 +15,35 @@ class StatisticRepositoryImpl implements StatisticRepository
     {
         return [
             'total_transaction' => $this->totalTransaction(),
-            'total_payAmount' => $this->totalPayAmount(),
+            'total_pay_amount' => $this->totalPayAmount(),
             'total_product' => $this->totalProduct(),
             'product_sold' => $this->productSold(),
-            'transaction_history' => $this->transactionHistory()
+            'transaction_history' => $this->transactionHistory(),
+            'status' => $this->pieStatusReport()
         ];
+    }
+
+    /**
+     * Pie chart for transaction status report.
+     */
+    public function pieStatusReport()
+    {
+        return app()->chartjs
+            ->name('status')
+            ->type('pie')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels(['PENDING', 'APPROVE', 'SENDING', 'SUCCESS', 'FAILED'])
+            ->datasets([
+                [
+                    'backgroundColor' => ['#D97706', '#1C64F2', '#7E3AF2', '#059669', '#E02424'],
+                    'hoverBackgroundColor' => ['#D97706', '#1C64F2', '#7E3AF2', '#059669', '#E02424'],
+                    'data' => $this->statusReport()
+                ]
+            ])
+            ->options([
+                'responsive' => true,
+                'legend' => false
+            ]);
     }
 
     /**
@@ -60,5 +84,17 @@ class StatisticRepositoryImpl implements StatisticRepository
     public function transactionHistory(int $take = 7)
     {
         return Transaction::query()->orderByDesc('created_at')->take($take)->get();
+    }
+
+    /**
+     * Data for transaction status report.
+     */
+    public function statusReport(): array
+    {
+        foreach (Transaction::status as $key => $value) {
+            $data[] = Transaction::query()->where('status', $value)->count();
+        }
+
+        return $data;
     }
 }

@@ -6,18 +6,7 @@ use Illuminate\View\Component;
 
 class Table extends Component
 {
-    /**
-     * Headers of table.
-     *
-     * @var
-     */
     public $headers;
-
-    /**
-     * Pagination of data.
-     *
-     * @var
-     */
     public $pagination;
 
     /**
@@ -25,7 +14,7 @@ class Table extends Component
      *
      * @return void
      */
-    public function __construct(array $headers, $pagination)
+    public function __construct(array $headers, $pagination = null)
     {
         $this->headers = $headers;
         $this->pagination = $pagination;

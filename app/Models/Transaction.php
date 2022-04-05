@@ -29,7 +29,6 @@ class Transaction extends Model
         'sending' => 'SENDING',
         'success' => 'SUCCESS',
         'failed' => 'FAILED',
-
     ];
 
     /**

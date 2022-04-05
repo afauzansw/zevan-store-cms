@@ -6,34 +6,17 @@ use Illuminate\View\Component;
 
 class Card extends Component
 {
-    /**
-     * Card icon color
-     *
-     * @var
-     */
+    public $icon;
     public $color;
-
-    /**
-     * Card title
-     *
-     * @var
-     */
     public $cardTitle;
-
-    /**
-     * Card data value
-     *
-     * @var
-     */
     public $dataValue;
 
     /**
      * Create a new component instance.
-     *
-     * @return void
      */
-    public function __construct($color, $cardTitle, $dataValue)
+    public function __construct($icon, $color, $cardTitle, $dataValue)
     {
+        $this->icon = $icon;
         $this->color = $color;
         $this->cardTitle = $cardTitle;
         $this->dataValue = $dataValue;
@@ -41,8 +24,6 @@ class Card extends Component
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
     public function render()
     {

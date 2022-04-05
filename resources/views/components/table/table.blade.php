@@ -17,5 +17,7 @@
             </tbody>
         </table>
     </div>
-    {{ $pagination->links() }}
+    @if($pagination != null)
+        {{ $pagination->links() }}
+    @endif
 </div>
