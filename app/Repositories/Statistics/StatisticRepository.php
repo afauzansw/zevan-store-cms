@@ -15,6 +15,11 @@ interface StatisticRepository
     public function pieStatusReport();
 
     /**
+     * Line chart for traffic income report.
+     */
+    public function lineTrafficChart();
+
+    /**
      * Report total transaction.
      */
     public function totalTransaction();
@@ -43,4 +48,9 @@ interface StatisticRepository
      * Data for transaction status report.
      */
     public function statusReport();
+
+    /**
+     * Sum traffic income per month.
+     */
+    public function trafficIncome();
 }

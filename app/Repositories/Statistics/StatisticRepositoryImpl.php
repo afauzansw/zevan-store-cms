@@ -19,7 +19,8 @@ class StatisticRepositoryImpl implements StatisticRepository
             'total_product' => $this->totalProduct(),
             'product_sold' => $this->productSold(),
             'transaction_history' => $this->transactionHistory(),
-            'status' => $this->pieStatusReport()
+            'status' => $this->pieStatusReport(),
+            'traffic' => $this->lineTrafficChart()
         ];
     }
 
@@ -36,12 +37,38 @@ class StatisticRepositoryImpl implements StatisticRepository
             ->datasets([
                 [
                     'backgroundColor' => ['#D97706', '#1C64F2', '#7E3AF2', '#059669', '#E02424'],
-                    'hoverBackgroundColor' => ['#D97706', '#1C64F2', '#7E3AF2', '#059669', '#E02424'],
+                    'hoverBackgroundColor' => ['#F59E0B', '#3F83F8', '#8B5CF6', '#10B981', '#EF4444'],
                     'data' => $this->statusReport()
                 ]
             ])
             ->options([
                 'responsive' => true,
+                'legend' => false
+            ]);
+    }
+
+    /**
+     * Line chart for traffic income report.
+     */
+    public function lineTrafficChart()
+    {
+        return app()->chartjs
+            ->name('traffic')
+            ->type('line')
+            ->size(['width' => 400, 'height' => 240])
+            ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+            ->datasets([
+                [
+                    'label' => 'Income',
+                    'borderColor' => '#7e3af2',
+                    'pointBorderColor' => '#7e3af2',
+                    'pointBackgroundColor' => '#7e3af2',
+                    'pointHoverBackgroundColor' => '#f6f6f6',
+                    'pointHoverBorderColor' => 'rgba(220,220,220,1)',
+                    'data' => $this->trafficIncome(),
+                ]
+            ])
+            ->options([
                 'legend' => false
             ]);
     }
@@ -93,6 +120,18 @@ class StatisticRepositoryImpl implements StatisticRepository
     {
         foreach (Transaction::status as $key => $value) {
             $data[] = Transaction::query()->where('status', $value)->count();
+        }
+
+        return $data;
+    }
+
+    /**
+     * Sum traffic income per month.
+     */
+    public function trafficIncome(): array
+    {
+        for ($i = 1; $i <= 12; $i++) {
+            $data[] = Transaction::query()->whereMonth('created_at', $i)->sum('pay_amount');
         }
 
         return $data;
