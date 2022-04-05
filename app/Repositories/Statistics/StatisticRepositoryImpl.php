@@ -67,7 +67,7 @@ class StatisticRepositoryImpl implements StatisticRepository
      */
     public function totalProduct(): int
     {
-        return Product::query()->count();
+        return Product::query()->sum('quantity');
     }
 
     /**
