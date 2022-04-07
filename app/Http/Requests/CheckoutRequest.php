@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transaction;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class CheckoutRequest extends FormRequest
 {
@@ -33,5 +35,13 @@ class CheckoutRequest extends FormRequest
             'zip_code'           => 'required|string',
             'transaction_total'  => 'required|int'
         ];
+    }
+
+    public function passedValidation()
+    {
+        $this->merge([
+            'status' => Transaction::status['pending'],
+            'status_color' => Transaction::statusColor['PENDING']
+        ]);
     }
 }

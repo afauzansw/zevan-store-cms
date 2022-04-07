@@ -25,6 +25,7 @@ class CreateTransactionsTable extends Migration
             $table->string('zip_code');
             $table->integer('pay_amount');
             $table->string('status');
+            $table->string('status_color');
             $table->softDeletes();
             $table->timestamps();
         });

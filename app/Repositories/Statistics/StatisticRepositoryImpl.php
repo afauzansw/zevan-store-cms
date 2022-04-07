@@ -36,8 +36,8 @@ class StatisticRepositoryImpl implements StatisticRepository
             ->labels(['PENDING', 'APPROVE', 'SENDING', 'SUCCESS', 'FAILED'])
             ->datasets([
                 [
-                    'backgroundColor' => ['#D97706', '#1C64F2', '#7E3AF2', '#059669', '#E02424'],
-                    'hoverBackgroundColor' => ['#F59E0B', '#3F83F8', '#8B5CF6', '#10B981', '#EF4444'],
+                    'backgroundColor' => ['#D97706', '#1C64F2', '#D03801', '#059669', '#E02424'],
+                    'hoverBackgroundColor' => ['#F59E0B', '#3F83F8', '#FF5A1F', '#10B981', '#EF4444'],
                     'data' => $this->statusReport()
                 ]
             ])

@@ -9,5 +9,5 @@ interface AdminTransactionRepository extends BuilderRepository
     /**
      * Change status transaction.
      */
-    public function changeStatus(int $id, string $status);
+    public function changeStatus(int $id, array $data);
 }

@@ -22,6 +22,19 @@ class TransactionFactory extends Factory
      */
     public function definition()
     {
+        $status = $this->faker->randomElement(Transaction::status);
+        if ($status == 'PENDING') {
+            $color = 'yellow';
+        } elseif ($status == 'APPROVE') {
+            $color = 'blue';
+        } elseif ($status == 'SENDING') {
+            $color = 'orange';
+        } elseif ($status == 'SUCCESS') {
+            $color = 'green';
+        } elseif ($status == 'FAILED') {
+            $color = 'red';
+        }
+
         return [
             'number'       => $this->faker->buildingNumber(),
             'name'         => $this->faker->name,
@@ -32,7 +45,8 @@ class TransactionFactory extends Factory
             'province'     => $this->faker->state,
             'zip_code'     => $this->faker->postcode,
             'pay_amount'   => $this->faker->randomNumber(6),
-            'status'       => $this->faker->randomElement(Transaction::status)
+            'status'       => $status,
+            'status_color' => $color
         ];
     }
 }

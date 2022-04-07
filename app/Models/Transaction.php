@@ -15,7 +15,7 @@ class Transaction extends Model
      * @var string[]
      */
     protected $fillable = [
-        'number', 'name', 'email', 'phone_number', 'address', 'city', 'province', 'zip_code', 'pay_amount', 'status'
+        'number', 'name', 'email', 'phone_number', 'address', 'city', 'province', 'zip_code', 'pay_amount', 'status', 'status_color'
     ];
 
     /**
@@ -23,12 +23,26 @@ class Transaction extends Model
      */
     protected $hidden = [];
 
+    /**
+     * Transaction status.
+     */
     const status = [
         'pending' => 'PENDING',
         'approve' => 'APPROVE',
         'sending' => 'SENDING',
         'success' => 'SUCCESS',
         'failed' => 'FAILED',
+    ];
+
+    /**
+     * Transaction status color.
+     */
+    const statusColor = [
+        'PENDING' => 'yellow',
+        'APPROVE' => 'blue',
+        'SENDING' => 'orange',
+        'SUCCESS' => 'green',
+        'FAILED' => 'red',
     ];
 
     /**

@@ -26,7 +26,7 @@
             </h4>
             <div> {{ $status->render() }} </div>
             <div
-                class="flex justify-center mt-6 space-x-3 text-sm text-gray-600 dark:text-gray-400"
+                class="flex justify-center mt-6 space-x-3 text-sm text-gray-500 dark:text-gray-400"
             >
                 <!-- Chart legend -->
                 <div class="flex items-center">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="flex items-center">
                     <span
-                        class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+                        class="inline-block w-3 h-3 mr-1 dark:bg-orange-600 rounded-full"
                     ></span>
                     <span>SENDING</span>
                 </div>

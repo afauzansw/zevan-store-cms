@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Transaction;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangeStatusRequest;
 use App\Models\Transaction;
 use App\Repositories\Transactions\Admin\AdminTransactionRepository;
 use Illuminate\Http\Request;
@@ -49,9 +50,9 @@ class TransactionController extends Controller
     /**
      * Change status of transaction.
      */
-    public function changeStatus(int $id, Request $request)
+    public function changeStatus(int $id, ChangeStatusRequest $request)
     {
-        $this->repository->changeStatus($id, $request->status);
+        $this->repository->changeStatus($id, $request->all());
         return redirect()->back();
     }
 }

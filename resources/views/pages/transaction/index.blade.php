@@ -17,14 +17,21 @@
                 <x-table.td>
 
                     <div
-                        class="relative text-gray-500 focus-within:text-purple-600"
+                        class="relative text-gray-600"
                     >
-                        <form action="{{ route('transactions.status', $transaction->id) }}" method="POST">
+                        <form action="{{ route('transactions.status', $transaction->id) }}"
+                              method="POST">
                             @csrf
                             @method('PUT')
-                            <select name="status" id="status" class="block w-48 p-2 mt-1 rounded-lg text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            <select name="status"
+                                    class="block w-40 p-2 mt-1 rounded-lg text-sm bg-gray-100 text-{{ $transaction->status_color }}-600 dark:text-{{ $transaction->status_color }}-200 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                 @foreach(\App\Models\Transaction::status as $key => $value)
-                                    <option @if( $transaction->status == $value) {{ 'selected' }} @endif value="{{ $value }}"> {{ $value }} </option>
+                                    <option class="text-gray-600 dark:text-gray-300"
+                                            @if( $transaction->status == $value) {{ 'selected' }} @endif
+                                            value="{{ $value }}"
+                                    >
+                                        {{ $value }}
+                                    </option>
                                 @endforeach
                             </select>
                             <button

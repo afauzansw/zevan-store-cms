@@ -21,8 +21,8 @@ class AdminTransactionRepositoryImpl extends BaseRepository implements AdminTran
     /**
      * Change status transaction.
      */
-    public function changeStatus(int $id, string $status)
+    public function changeStatus(int $id, array $data)
     {
-        Transaction::query()->findOrFail($id)->update(['status' => $status]);
+        Transaction::query()->findOrFail($id)->update($data);
     }
 }
